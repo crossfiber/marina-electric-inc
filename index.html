@@ -252,15 +252,21 @@ body {
 .btn-glow:hover::before { left: 100%; }
 .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0, 180, 216, 0.5), 0 0 60px rgba(0, 180, 216, 0.2); }
 .btn-gold {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  box-shadow: 0 0 20px rgba(201, 168, 76, 0.3), 0 0 40px rgba(201, 168, 76, 0.1);
-  color: var(--navy);
+  background: rgba(201, 168, 76, 0.2);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  color: var(--gold-light);
 }
-.btn-gold:hover { box-shadow: 0 0 30px rgba(201, 168, 76, 0.5), 0 0 60px rgba(201, 168, 76, 0.2); }
+.btn-gold:hover { background: rgba(201, 168, 76, 0.35); border-color: var(--gold-light); box-shadow: 0 4px 30px rgba(201, 168, 76, 0.3); }
 .btn-outline {
-  background: transparent; border: 2px solid var(--teal); color: var(--teal); box-shadow: none;
+  background: rgba(0, 180, 216, 0.1);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  color: var(--teal);
 }
-.btn-outline:hover { background: var(--teal); color: var(--navy); box-shadow: 0 0 20px rgba(0, 180, 216, 0.3); }
+.btn-outline:hover { background: rgba(0, 180, 216, 0.25); border-color: var(--teal); box-shadow: 0 4px 30px rgba(0, 180, 216, 0.3); color: var(--white); }
 
 /* Mobile */
 .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001; background: none; border: none; padding: 0.5rem; }
@@ -1396,7 +1402,7 @@ section { padding: 4.5rem 0; }
 <!-- ====== BRANDS CAROUSEL ====== -->
 <div class="brands-section">
   <div class="brands-inner">
-    <div class="brands-title">Brands We Work With</div>
+    <div class="brands-title">World Class Brands We Work With</div>
     <div class="brands-track-wrap">
       <div class="brands-track">
         <img src="https://www.marinaelectricinc.com/pub/banner_images/6353_eaton.jpg" alt="EATON">
