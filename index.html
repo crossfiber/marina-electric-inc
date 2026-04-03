@@ -554,7 +554,7 @@ section { padding: 4.5rem 0; }
 /* ======= PROJECTS ======= */
 .projects-section { background: var(--navy); }
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-.project-card { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
+.project-card { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; outline: 2px solid var(--navy); outline-offset: -1px; }
 .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 .project-card:hover img { transform: scale(1.08); }
 .project-overlay {
@@ -707,39 +707,45 @@ section { padding: 4.5rem 0; }
   background: linear-gradient(180deg, var(--navy-light) 0%, var(--navy) 100%);
   border-top: 1px solid var(--glass-border); padding: 0; overflow: hidden;
 }
-.footer-top {
-  max-width: 1340px; margin: 0 auto; padding: 3.5rem 2rem 2.5rem;
-  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+.footer-brand-block {
+  max-width: 1340px; margin: 0 auto; padding: 3.5rem 2rem 2.5rem; text-align: center;
 }
-.footer-top-brand { display: flex; align-items: center; gap: 1.25rem; }
-.footer-top-brand img { height: 36px; filter: brightness(0) invert(1); }
-.footer-top-brand span { color: var(--gray-300); font-size: 0.85rem; border-left: 1px solid var(--glass-border); padding-left: 1.25rem; max-width: 280px; line-height: 1.5; }
-.footer-top-contact { display: flex; align-items: center; gap: 2rem; }
-.footer-top-contact a {
-  color: var(--gray-200); text-decoration: none; font-size: 0.88rem;
-  display: flex; align-items: center; gap: 0.6rem; transition: var(--transition);
+.footer-brand-block p {
+  color: var(--gray-300); font-size: 0.95rem; line-height: 1.6; max-width: 520px; margin: 0 auto 1.5rem;
 }
-.footer-top-contact a i { color: var(--teal); font-size: 0.8rem; }
-.footer-top-contact a:hover { color: var(--teal); }
+.footer-social {
+  display: flex; justify-content: center; gap: 0.75rem;
+}
+.footer-social a {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gray-300); text-decoration: none; transition: all 0.3s ease; font-size: 0.95rem;
+}
+.footer-social a:hover { color: var(--teal); border-color: var(--teal); box-shadow: 0 0 15px rgba(0,180,216,0.25); }
 .footer-divider { max-width: 1340px; margin: 0 auto; height: 1px; background: var(--glass-border); }
-.footer-mid {
-  max-width: 1340px; margin: 0 auto; padding: 2.5rem 2rem;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem;
+.footer-columns {
+  max-width: 1340px; margin: 0 auto; padding: 3rem 2rem;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
 }
-.footer-mid a {
-  color: var(--gray-600); text-decoration: none; font-size: 0.82rem; transition: var(--transition);
-  display: flex; align-items: center; gap: 0.4rem;
+.footer-col h4 {
+  font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600;
+  color: var(--white); margin-bottom: 1.25rem;
 }
-.footer-mid a:hover { color: var(--teal); }
-.footer-mid a i { font-size: 0.65rem; color: var(--glass-border); }
+.footer-col a {
+  display: block; color: var(--gray-300); text-decoration: none;
+  font-size: 0.88rem; padding: 0.3rem 0; transition: var(--transition);
+}
+.footer-col a:hover { color: var(--teal); }
+.footer-col address {
+  font-style: normal; color: var(--gray-300); font-size: 0.88rem; line-height: 1.7;
+}
+.footer-col address a { display: inline; padding: 0; }
 .footer-bottom {
   max-width: 1340px; margin: 0 auto; padding: 1.5rem 2rem;
-  border-top: 1px solid var(--glass-border);
-  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--glass-border); text-align: center;
 }
 .footer-bottom p { color: var(--gray-600); font-size: 0.75rem; }
-.footer-bottom .social-links { margin-top: 0; }
-.footer-bottom .social-links a { width: 32px; height: 32px; font-size: 0.8rem; border-radius: 8px; }
 
 /* ======= ANIMATIONS ======= */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -758,7 +764,7 @@ section { padding: 4.5rem 0; }
   .contact-grid { grid-template-columns: 1fr; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
   .stat-item:nth-child(2)::after { display: none; }
-  .footer-top { flex-direction: column; align-items: flex-start; }
+  .footer-columns { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -813,12 +819,12 @@ section { padding: 4.5rem 0; }
   .contact-form-wrap h3 { font-size: 1.35rem; }
   .faq-question { padding: 1.15rem 1.25rem; font-size: 0.9rem; }
   .faq-answer-inner { padding: 0 1.25rem 1.25rem; font-size: 0.88rem; }
-  .footer-top { padding: 2.5rem 1.5rem 2rem; }
-  .footer-top-brand span { display: none; }
-  .footer-top-contact { gap: 1.25rem; flex-wrap: wrap; }
-  .footer-top-contact a { font-size: 0.82rem; }
-  .footer-mid { padding: 1.5rem; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.25rem 1.5rem; }
+  .footer-brand-block { padding: 2.5rem 1.5rem 2rem; }
+  .footer-brand-block p { font-size: 0.88rem; }
+  .footer-columns { padding: 2rem 1.5rem; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .footer-col h4 { font-size: 0.95rem; margin-bottom: 1rem; }
+  .footer-col a { font-size: 0.82rem; }
+  .footer-bottom { padding: 1.25rem 1.5rem; }
 }
 @media (max-width: 480px) {
   .stats-inner { grid-template-columns: 1fr 1fr; }
@@ -1493,39 +1499,51 @@ section { padding: 4.5rem 0; }
 
 <!-- ====== FOOTER ====== -->
 <footer class="footer">
-  <div class="footer-top">
-    <div class="footer-top-brand">
-      <img src="https://www.marinaelectricinc.com/pub/images/logo.svg" alt="Marina Electric Inc. logo">
-      <span>Licensed unlimited electrical contractor serving South Florida and the Bahamas since 2008.</span>
-    </div>
-    <address style="font-style:normal;" class="footer-top-contact">
-      <a href="tel:+13059894959"><i class="fas fa-phone"></i> (305) 989-4959</a>
-      <a href="mailto:info@marinaelectricinc.com"><i class="fas fa-envelope"></i> info@marinaelectricinc.com</a>
-      <a href="#contact"><i class="fas fa-map-marker-alt"></i> Cutler Bay, FL</a>
-    </address>
-  </div>
-  <div class="footer-divider"></div>
-  <nav class="footer-mid" aria-label="Footer navigation">
-    <a href="#hero"><i class="fas fa-chevron-right"></i> Home</a>
-    <a href="#about"><i class="fas fa-chevron-right"></i> About</a>
-    <a href="#services"><i class="fas fa-chevron-right"></i> Services</a>
-    <a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a>
-    <a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a>
-    <a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a>
-    <a href="#services"><i class="fas fa-chevron-right"></i> Power Plants</a>
-    <a href="#services"><i class="fas fa-chevron-right"></i> Pedestals</a>
-    <a href="#services"><i class="fas fa-chevron-right"></i> Switchboards</a>
-    <a href="#services"><i class="fas fa-chevron-right"></i> Generators</a>
-    <a href="#services"><i class="fas fa-chevron-right"></i> Boat Lifts</a>
-    <a href="#services"><i class="fas fa-chevron-right"></i> Fire Alarms</a>
-  </nav>
-  <div class="footer-divider"></div>
-  <div class="footer-bottom">
-    <p>&copy; 2024 Marina Electric Inc. All rights reserved. Licensed & Insured.</p>
-    <div class="social-links">
+  <div class="footer-brand-block">
+    <p>Licensed unlimited electrical contractor specializing in marinas. Serving South Florida and the Bahamas since 2008.</p>
+    <div class="footer-social">
       <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
       <a href="mailto:info@marinaelectricinc.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
     </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-columns">
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#services" onclick="openModal('powerplants')">Power Plants</a>
+      <a href="#services" onclick="openModal('pedestals')">Pedestals</a>
+      <a href="#services" onclick="openModal('switchboards')">Switchboards</a>
+      <a href="#services" onclick="openModal('generators')">Generators & ATS</a>
+      <a href="#services" onclick="openModal('boatlift')">Boat Lifts</a>
+    </div>
+    <div class="footer-col">
+      <h4>More Services</h4>
+      <a href="#services" onclick="openModal('surge')">Surge Protectors</a>
+      <a href="#services" onclick="openModal('firealarm')">Fire Alarms</a>
+      <a href="#services" onclick="openModal('lighting')">Lighting Control</a>
+      <a href="#services" onclick="openModal('distribution')">Distribution Panels</a>
+      <a href="#services" onclick="openModal('security')">Security & CCTV</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <address>
+        Cutler Bay, FL<br>
+        <a href="tel:+13059894959">(305) 989-4959</a><br>
+        <a href="mailto:info@marinaelectricinc.com">info@marinaelectricinc.com</a>
+      </address>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Marina Electric Inc. All rights reserved. Licensed & Insured.</p>
   </div>
 </footer>
 
