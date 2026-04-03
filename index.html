@@ -946,67 +946,112 @@ section { padding: 4.5rem 0; }
     <div class="hero-visual">
       <div class="svg-map-wrap">
         <svg viewBox="0 0 500 520" xmlns="http://www.w3.org/2000/svg">
-          <!-- Florida coastline (simplified SE Florida) -->
-          <path class="map-land" d="M80,40 L120,35 L155,30 L190,28 L210,35 L215,60 L218,90 L220,130 L225,170 L230,210 L238,250 L248,280 L255,310 L258,340 L252,370 L240,395 L220,415 L195,430 L165,440 L140,435 L125,420 L115,400 L105,370 L95,340 L85,310 L78,280 L72,250 L68,210 L65,170 L66,130 L68,90 L72,60 Z"/>
-          <path class="map-land-fill" d="M80,40 L120,35 L155,30 L190,28 L210,35 L215,60 L218,90 L220,130 L225,170 L230,210 L238,250 L248,280 L255,310 L258,340 L252,370 L240,395 L220,415 L195,430 L165,440 L140,435 L125,420 L115,400 L105,370 L95,340 L85,310 L78,280 L72,250 L68,210 L65,170 L66,130 L68,90 L72,60 Z"/>
-          <!-- Florida Keys -->
-          <path class="map-land" d="M165,440 L150,452 L130,458 L108,462 L85,460 L62,455 L45,448"/>
-          <!-- Bahamas islands -->
-          <path class="map-land" d="M340,80 L365,75 L385,82 L390,100 L380,115 L360,118 L342,110 L338,95 Z"/>
-          <path class="map-land-fill" d="M340,80 L365,75 L385,82 L390,100 L380,115 L360,118 L342,110 L338,95 Z"/>
-          <path class="map-land" d="M310,150 L335,145 L352,155 L348,172 L330,178 L312,170 Z"/>
-          <path class="map-land-fill" d="M310,150 L335,145 L352,155 L348,172 L330,178 L312,170 Z"/>
-          <path class="map-land" d="M370,180 L395,175 L410,188 L405,205 L388,210 L372,200 Z"/>
-          <path class="map-land-fill" d="M370,180 L395,175 L410,188 L405,205 L388,210 L372,200 Z"/>
-          <!-- Route lines from HQ to project sites -->
-          <path class="route-line" d="M200,340 C220,300 230,280 235,250"/>
-          <path class="route-line" d="M200,340 C230,320 245,295 248,275"/>
-          <path class="route-line" d="M200,340 C210,310 215,290 225,265"/>
-          <path class="route-line" d="M200,340 C220,330 235,325 250,315"/>
-          <path class="route-line" d="M200,340 C280,280 330,200 362,97"/>
-          <path class="route-line" d="M200,340 C270,300 310,250 330,162"/>
-          <!-- HQ marker (Cutler Bay) -->
+          <!-- Subtle grid lines for map aesthetic -->
+          <line x1="0" y1="130" x2="500" y2="130" stroke="rgba(0,180,216,0.04)" stroke-width="0.5"/>
+          <line x1="0" y1="260" x2="500" y2="260" stroke="rgba(0,180,216,0.04)" stroke-width="0.5"/>
+          <line x1="0" y1="390" x2="500" y2="390" stroke="rgba(0,180,216,0.04)" stroke-width="0.5"/>
+          <line x1="166" y1="0" x2="166" y2="520" stroke="rgba(0,180,216,0.04)" stroke-width="0.5"/>
+          <line x1="333" y1="0" x2="333" y2="520" stroke="rgba(0,180,216,0.04)" stroke-width="0.5"/>
+
+          <!-- SE Florida Peninsula (geographically accurate) -->
+          <!-- East coast runs N-S, peninsula narrows going south, Keys curve SW -->
+          <path class="map-land" d="M98,55 L132,48 L148,56 L155,78 L160,108 L163,142 L164,175 L162,210 L158,242 L152,268 L146,288 L140,305 L132,322 L120,342 L106,360 L92,378 L80,374 L72,355 L68,332 L65,305 L63,275 L63,245 L65,212 L70,180 L76,148 L82,115 L90,82 Z"/>
+          <path class="map-land-fill" d="M98,55 L132,48 L148,56 L155,78 L160,108 L163,142 L164,175 L162,210 L158,242 L152,268 L146,288 L140,305 L132,322 L120,342 L106,360 L92,378 L80,374 L72,355 L68,332 L65,305 L63,275 L63,245 L65,212 L70,180 L76,148 L82,115 L90,82 Z"/>
+
+          <!-- Miami Beach barrier island (thin strip east of mainland) -->
+          <path class="map-land" d="M170,218 L172,210 L174,225 L175,245 L174,265 L172,278 L170,270 L169,248 L170,230 Z" style="fill:rgba(0,180,216,0.05);stroke:var(--teal);stroke-width:0.8;stroke-dasharray:none;stroke-dashoffset:0;opacity:0.7"/>
+
+          <!-- Florida Keys (curving chain southwest) -->
+          <path class="map-land" d="M92,378 L80,394 L65,408 L48,420 L32,428 L18,434 L6,432"/>
+
+          <!-- Grand Bahama Island (east, horizontal) -->
+          <path class="map-land" d="M295,102 L322,94 L352,92 L378,97 L388,108 L382,118 L355,122 L325,124 L300,116 L292,108 Z"/>
+          <path class="map-land-fill" d="M295,102 L322,94 L352,92 L378,97 L388,108 L382,118 L355,122 L325,124 L300,116 L292,108 Z"/>
+
+          <!-- Abaco Islands (elongated, NW-SE) -->
+          <path class="map-land" d="M388,52 L400,40 L412,45 L418,66 L415,90 L407,100 L396,92 L390,72 Z"/>
+          <path class="map-land-fill" d="M388,52 L400,40 L412,45 L418,66 L415,90 L407,100 L396,92 L390,72 Z"/>
+
+          <!-- Walker's Cay (small, northernmost Bahamas) -->
+          <path class="map-land" d="M366,22 L377,16 L385,24 L377,32 L368,28 Z"/>
+          <path class="map-land-fill" d="M366,22 L377,16 L385,24 L377,32 L368,28 Z"/>
+
+          <!-- Bimini Islands (small, closest Bahamas to FL) -->
+          <path class="map-land" d="M235,272 L243,266 L248,274 L241,282 Z"/>
+          <path class="map-land-fill" d="M235,272 L243,266 L248,274 L241,282 Z"/>
+
+          <!-- Andros Island (large, western Bahamas) -->
+          <path class="map-land" d="M285,225 L298,218 L305,230 L302,265 L296,285 L284,278 L278,252 L280,235 Z"/>
+          <path class="map-land-fill" d="M285,225 L298,218 L305,230 L302,265 L296,285 L284,278 L278,252 L280,235 Z"/>
+
+          <!-- New Providence / Nassau -->
+          <path class="map-land" d="M355,258 L370,252 L378,260 L372,270 L357,268 Z"/>
+          <path class="map-land-fill" d="M355,258 L370,252 L378,260 L372,270 L357,268 Z"/>
+
+          <!-- Eleuthera (thin, elongated) -->
+          <path class="map-land" d="M415,172 L420,162 L424,172 L422,200 L418,218 L413,212 L412,190 Z"/>
+          <path class="map-land-fill" d="M415,172 L420,162 L424,172 L422,200 L418,218 L413,212 L412,190 Z"/>
+
+          <!-- Berry Islands (small cluster) -->
+          <path class="map-land" d="M325,188 L334,182 L340,190 L332,198 Z"/>
+          <path class="map-land-fill" d="M325,188 L334,182 L340,190 L332,198 Z"/>
+
+          <!-- Route lines from Cutler Bay HQ to project sites -->
+          <path class="route-line" d="M112,345 C135,315 150,285 158,248"/>
+          <path class="route-line" d="M112,345 C132,320 148,298 155,265"/>
+          <path class="route-line" d="M112,345 C128,328 140,310 148,282"/>
+          <path class="route-line" d="M112,345 C125,335 135,320 140,305"/>
+          <path class="route-line" d="M112,345 C190,280 290,155 375,25"/>
+          <path class="route-line" d="M112,345 C175,290 250,200 328,112"/>
+
+          <!-- HQ Marker - Cutler Bay -->
           <g class="svg-hq-marker" style="opacity:0;animation:pin-appear 0.5s ease 1.8s forwards">
-            <circle cx="200" cy="340" r="16" opacity="0.2"/>
-            <circle cx="200" cy="340" r="10"/>
-            <text x="200" y="343" text-anchor="middle" font-size="6" font-weight="700">HQ</text>
-            <text x="200" y="365" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.7)">Cutler Bay</text>
+            <circle cx="112" cy="345" r="16" opacity="0.2"/>
+            <circle cx="112" cy="345" r="10"/>
+            <text x="112" y="348" text-anchor="middle" font-size="6" font-weight="700">HQ</text>
+            <text x="112" y="370" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.7)">Cutler Bay</text>
           </g>
-          <!-- Project pins -->
+
+          <!-- Project Pins -->
+          <!-- Miami Beach Marina (on barrier island, east of mainland) -->
           <g class="svg-pin">
-            <circle class="pin-pulse" cx="238" cy="248" r="6"/>
-            <circle class="pin-dot" cx="238" cy="248" r="5"/>
-            <text x="255" y="244">Miami Beach</text>
-            <text x="255" y="255" font-size="7" fill="rgba(255,255,255,0.5)">Marina</text>
+            <circle class="pin-pulse" cx="168" cy="242" r="6"/>
+            <circle class="pin-dot" cx="168" cy="242" r="5"/>
+            <text x="184" y="238">Miami Beach</text>
+            <text x="184" y="249" font-size="7" fill="rgba(255,255,255,0.5)">Marina</text>
           </g>
+          <!-- Walker's Cay, Bahamas (northernmost) -->
           <g class="svg-pin">
-            <circle class="pin-pulse" cx="362" cy="97" r="6"/>
-            <circle class="pin-dot" cx="362" cy="97" r="5"/>
-            <text x="340" y="72">Walker's Cay</text>
-            <text x="340" y="83" font-size="7" fill="rgba(255,255,255,0.5)">Bahamas</text>
+            <circle class="pin-pulse" cx="375" cy="25" r="6"/>
+            <circle class="pin-dot" cx="375" cy="25" r="5"/>
+            <text x="315" y="8">Walker's Cay</text>
+            <text x="315" y="19" font-size="7" fill="rgba(255,255,255,0.5)">Bahamas</text>
           </g>
+          <!-- Star Island (Biscayne Bay, near Miami Beach) -->
           <g class="svg-pin">
-            <circle class="pin-pulse" cx="248" cy="270" r="6"/>
-            <circle class="pin-dot" cx="248" cy="270" r="5"/>
-            <text x="265" y="274">Star Island</text>
+            <circle class="pin-pulse" cx="160" cy="262" r="6"/>
+            <circle class="pin-dot" cx="160" cy="262" r="5"/>
+            <text x="176" y="266">Star Island</text>
           </g>
+          <!-- River Cove Marina (north of Miami, inland coast) -->
           <g class="svg-pin">
-            <circle class="pin-pulse" cx="225" cy="260" r="6"/>
-            <circle class="pin-dot" cx="225" cy="260" r="5"/>
-            <text x="145" y="264">River Cove</text>
+            <circle class="pin-pulse" cx="152" cy="280" r="6"/>
+            <circle class="pin-dot" cx="152" cy="280" r="5"/>
+            <text x="68" y="275">River Cove</text>
           </g>
+          <!-- Gables by the Sea (south of Coral Gables) -->
           <g class="svg-pin">
-            <circle class="pin-pulse" cx="250" cy="315" r="6"/>
-            <circle class="pin-dot" cx="250" cy="315" r="5"/>
-            <text x="267" y="312">Gables by</text>
-            <text x="267" y="323" font-size="7" fill="rgba(255,255,255,0.5)">the Sea</text>
+            <circle class="pin-pulse" cx="140" cy="305" r="6"/>
+            <circle class="pin-dot" cx="140" cy="305" r="5"/>
+            <text x="156" y="300">Gables by</text>
+            <text x="156" y="311" font-size="7" fill="rgba(255,255,255,0.5)">the Sea</text>
           </g>
-          <!-- Little Grand Bahama -->
+          <!-- Little Grand Bahama (near Grand Bahama) -->
           <g class="svg-pin" style="animation-delay:3.7s">
-            <circle class="pin-pulse" cx="330" cy="162" r="6"/>
-            <circle class="pin-dot" cx="330" cy="162" r="5"/>
-            <text x="347" y="158">Little Grand</text>
-            <text x="347" y="169" font-size="7" fill="rgba(255,255,255,0.5)">Bahama</text>
+            <circle class="pin-pulse" cx="328" cy="112" r="6"/>
+            <circle class="pin-dot" cx="328" cy="112" r="5"/>
+            <text x="344" y="108">Little Grand</text>
+            <text x="344" y="119" font-size="7" fill="rgba(255,255,255,0.5)">Bahama</text>
           </g>
         </svg>
       </div>
