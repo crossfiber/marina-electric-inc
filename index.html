@@ -374,44 +374,50 @@ body {
 }
 .hero-phone-row span { font-size: 0.8rem; color: var(--gray-300); font-weight: 400; display: block; margin-top: 0.15rem; }
 
-/* Hero Interactive Marina Map */
+/* Hero SVG Service Area Map */
 .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
-.marina-map-container { position: relative; width: 100%; max-width: 520px; aspect-ratio: 1; }
-.marina-map-ring {
-  position: absolute; border-radius: 50%; border: 1px solid var(--glass-border);
-  animation: rotate-slow 30s linear infinite;
+.svg-map-wrap { position: relative; width: 100%; max-width: 520px; }
+.svg-map-wrap svg { width: 100%; height: auto; filter: drop-shadow(0 0 30px rgba(0,180,216,0.15)); }
+.svg-map-wrap .map-land {
+  fill: rgba(0,180,216,0.08); stroke: var(--teal); stroke-width: 1.2;
+  stroke-dasharray: 2000; stroke-dashoffset: 2000;
+  animation: draw-map 3s ease-out 0.5s forwards;
 }
-.marina-map-ring:nth-child(1) { width: 100%; height: 100%; top: 0; left: 0; border-color: rgba(0,180,216,0.15); }
-.marina-map-ring:nth-child(2) { width: 75%; height: 75%; top: 12.5%; left: 12.5%; border-color: rgba(0,180,216,0.25); animation-direction: reverse; animation-duration: 25s; }
-.marina-map-ring:nth-child(3) { width: 50%; height: 50%; top: 25%; left: 25%; border-color: rgba(0,180,216,0.35); animation-duration: 20s; }
-@keyframes rotate-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-.marina-map-center {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 120px; height: 120px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--teal), var(--ocean));
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 60px rgba(0,180,216,0.4); z-index: 2;
+.svg-map-wrap .map-land-fill {
+  fill: rgba(0,180,216,0.06); stroke: none; opacity: 0;
+  animation: fade-land 1s ease 2.5s forwards;
 }
-.marina-map-center i { font-size: 2.5rem; color: var(--white); }
-.map-pin { position: absolute; z-index: 3; text-align: center; cursor: default; }
-.map-pin-dot {
-  width: 14px; height: 14px; border-radius: 50%; background: var(--gold);
-  margin: 0 auto 0.35rem; position: relative; box-shadow: 0 0 15px rgba(201,168,76,0.5);
+@keyframes draw-map { to { stroke-dashoffset: 0; } }
+@keyframes fade-land { to { opacity: 1; } }
+.svg-map-wrap .route-line {
+  fill: none; stroke: var(--gold); stroke-width: 1.5;
+  stroke-dasharray: 6 4; opacity: 0.6;
+  stroke-dashoffset: 500; animation: draw-route 2s ease 2s forwards;
 }
-.map-pin-dot::after {
-  content: ''; position: absolute; top: 50%; left: 50%;
-  width: 28px; height: 28px; border-radius: 50%;
-  border: 2px solid rgba(201,168,76,0.3);
-  transform: translate(-50%, -50%);
-  animation: ping 2s cubic-bezier(0,0,0.2,1) infinite;
+@keyframes draw-route { to { stroke-dashoffset: 0; } }
+.svg-pin { cursor: default; opacity: 0; animation: pin-appear 0.5s ease forwards; }
+.svg-pin:nth-child(1) { animation-delay: 2.2s; }
+.svg-pin:nth-child(2) { animation-delay: 2.5s; }
+.svg-pin:nth-child(3) { animation-delay: 2.8s; }
+.svg-pin:nth-child(4) { animation-delay: 3.1s; }
+.svg-pin:nth-child(5) { animation-delay: 3.4s; }
+@keyframes pin-appear { to { opacity: 1; } }
+.svg-pin circle.pin-dot { fill: var(--gold); }
+.svg-pin circle.pin-pulse {
+  fill: none; stroke: var(--gold); stroke-width: 1.5; opacity: 0.6;
+  animation: svg-ping 2.5s cubic-bezier(0,0,0.2,1) infinite;
 }
-@keyframes ping { 75%, 100% { transform: translate(-50%,-50%) scale(2); opacity: 0; } }
-.map-pin-label { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; color: var(--white); text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
-.pin-miami { top: 60%; left: 70%; }
-.pin-walker { top: 15%; right: 10%; }
-.pin-star { top: 50%; left: 82%; }
-.pin-gables { top: 72%; left: 55%; }
-.pin-river { top: 40%; left: 30%; }
+@keyframes svg-ping { 0% { r: 6; opacity: 0.6; } 100% { r: 18; opacity: 0; } }
+.svg-pin text {
+  fill: var(--white); font-family: var(--font-body); font-size: 8px;
+  font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+.svg-hq-marker circle { fill: var(--teal); filter: drop-shadow(0 0 12px rgba(0,180,216,0.5)); }
+.svg-hq-marker text {
+  fill: var(--white); font-family: var(--font-body); font-size: 7px;
+  font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+}
 
 /* ======= STATS BAR ======= */
 .stats-bar { position: relative; z-index: 3; margin-top: -4rem; padding: 0 2rem; }
@@ -771,13 +777,14 @@ section { padding: 4.5rem 0; }
   .nav-links { display: none; }
   .nav-phone { display: none; }
   .hamburger { display: flex; }
-  .nav-logo img { height: 30px; }
-  .nav-right .btn-glow { padding: 0.5rem 0.9rem; font-size: 0.72rem; }
-  .navbar { padding: 0.9rem 0; }
-  .navbar.scrolled { padding: 0.6rem 0; }
+  .hamburger span { width: 28px; height: 2.5px; }
+  .nav-logo img { height: 40px; }
+  .nav-right .btn-glow { padding: 0.65rem 1.15rem; font-size: 0.82rem; }
+  .navbar { padding: 1rem 0; }
+  .navbar.scrolled { padding: 0.75rem 0; }
   .hero { min-height: auto; }
-  .hero-bg { background-position: 35% center; }
-  .hero-content { padding: 5.5rem 1.25rem 2.5rem; }
+  .hero-bg { background-position: 35% 30%; }
+  .hero-content { padding: 6rem 1.25rem 2.5rem; }
   .hero h1 { font-size: 1.75rem; margin-bottom: 1rem; }
   .hero-badge { margin-bottom: 1rem; font-size: 0.7rem; padding: 0.4rem 1rem; }
   .hero-sub { font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; }
@@ -906,16 +913,71 @@ section { padding: 4.5rem 0; }
       </div>
     </div>
     <div class="hero-visual">
-      <div class="marina-map-container">
-        <div class="marina-map-ring"></div>
-        <div class="marina-map-ring"></div>
-        <div class="marina-map-ring"></div>
-        <div class="marina-map-center"><i class="fas fa-anchor"></i></div>
-        <div class="map-pin pin-miami"><div class="map-pin-dot"></div><div class="map-pin-label">Miami Beach Marina</div></div>
-        <div class="map-pin pin-walker"><div class="map-pin-dot"></div><div class="map-pin-label">Walker's Cay</div></div>
-        <div class="map-pin pin-star"><div class="map-pin-dot"></div><div class="map-pin-label">Star Island</div></div>
-        <div class="map-pin pin-gables"><div class="map-pin-dot"></div><div class="map-pin-label">Gables by the Sea</div></div>
-        <div class="map-pin pin-river"><div class="map-pin-dot"></div><div class="map-pin-label">River Cove Marina</div></div>
+      <div class="svg-map-wrap">
+        <svg viewBox="0 0 500 520" xmlns="http://www.w3.org/2000/svg">
+          <!-- Florida coastline (simplified SE Florida) -->
+          <path class="map-land" d="M80,40 L120,35 L155,30 L190,28 L210,35 L215,60 L218,90 L220,130 L225,170 L230,210 L238,250 L248,280 L255,310 L258,340 L252,370 L240,395 L220,415 L195,430 L165,440 L140,435 L125,420 L115,400 L105,370 L95,340 L85,310 L78,280 L72,250 L68,210 L65,170 L66,130 L68,90 L72,60 Z"/>
+          <path class="map-land-fill" d="M80,40 L120,35 L155,30 L190,28 L210,35 L215,60 L218,90 L220,130 L225,170 L230,210 L238,250 L248,280 L255,310 L258,340 L252,370 L240,395 L220,415 L195,430 L165,440 L140,435 L125,420 L115,400 L105,370 L95,340 L85,310 L78,280 L72,250 L68,210 L65,170 L66,130 L68,90 L72,60 Z"/>
+          <!-- Florida Keys -->
+          <path class="map-land" d="M165,440 L150,452 L130,458 L108,462 L85,460 L62,455 L45,448"/>
+          <!-- Bahamas islands -->
+          <path class="map-land" d="M340,80 L365,75 L385,82 L390,100 L380,115 L360,118 L342,110 L338,95 Z"/>
+          <path class="map-land-fill" d="M340,80 L365,75 L385,82 L390,100 L380,115 L360,118 L342,110 L338,95 Z"/>
+          <path class="map-land" d="M310,150 L335,145 L352,155 L348,172 L330,178 L312,170 Z"/>
+          <path class="map-land-fill" d="M310,150 L335,145 L352,155 L348,172 L330,178 L312,170 Z"/>
+          <path class="map-land" d="M370,180 L395,175 L410,188 L405,205 L388,210 L372,200 Z"/>
+          <path class="map-land-fill" d="M370,180 L395,175 L410,188 L405,205 L388,210 L372,200 Z"/>
+          <!-- Route lines from HQ to project sites -->
+          <path class="route-line" d="M200,340 C220,300 230,280 235,250"/>
+          <path class="route-line" d="M200,340 C230,320 245,295 248,275"/>
+          <path class="route-line" d="M200,340 C210,310 215,290 225,265"/>
+          <path class="route-line" d="M200,340 C220,330 235,325 250,315"/>
+          <path class="route-line" d="M200,340 C280,280 330,200 362,97"/>
+          <path class="route-line" d="M200,340 C270,300 310,250 330,162"/>
+          <!-- HQ marker (Cutler Bay) -->
+          <g class="svg-hq-marker" style="opacity:0;animation:pin-appear 0.5s ease 1.8s forwards">
+            <circle cx="200" cy="340" r="16" opacity="0.2"/>
+            <circle cx="200" cy="340" r="10"/>
+            <text x="200" y="343" text-anchor="middle" font-size="6" font-weight="700">HQ</text>
+            <text x="200" y="365" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.7)">Cutler Bay</text>
+          </g>
+          <!-- Project pins -->
+          <g class="svg-pin">
+            <circle class="pin-pulse" cx="238" cy="248" r="6"/>
+            <circle class="pin-dot" cx="238" cy="248" r="5"/>
+            <text x="255" y="244">Miami Beach</text>
+            <text x="255" y="255" font-size="7" fill="rgba(255,255,255,0.5)">Marina</text>
+          </g>
+          <g class="svg-pin">
+            <circle class="pin-pulse" cx="362" cy="97" r="6"/>
+            <circle class="pin-dot" cx="362" cy="97" r="5"/>
+            <text x="340" y="72">Walker's Cay</text>
+            <text x="340" y="83" font-size="7" fill="rgba(255,255,255,0.5)">Bahamas</text>
+          </g>
+          <g class="svg-pin">
+            <circle class="pin-pulse" cx="248" cy="270" r="6"/>
+            <circle class="pin-dot" cx="248" cy="270" r="5"/>
+            <text x="265" y="274">Star Island</text>
+          </g>
+          <g class="svg-pin">
+            <circle class="pin-pulse" cx="225" cy="260" r="6"/>
+            <circle class="pin-dot" cx="225" cy="260" r="5"/>
+            <text x="145" y="264">River Cove</text>
+          </g>
+          <g class="svg-pin">
+            <circle class="pin-pulse" cx="250" cy="315" r="6"/>
+            <circle class="pin-dot" cx="250" cy="315" r="5"/>
+            <text x="267" y="312">Gables by</text>
+            <text x="267" y="323" font-size="7" fill="rgba(255,255,255,0.5)">the Sea</text>
+          </g>
+          <!-- Little Grand Bahama -->
+          <g class="svg-pin" style="animation-delay:3.7s">
+            <circle class="pin-pulse" cx="330" cy="162" r="6"/>
+            <circle class="pin-dot" cx="330" cy="162" r="5"/>
+            <text x="347" y="158">Little Grand</text>
+            <text x="347" y="169" font-size="7" fill="rgba(255,255,255,0.5)">Bahama</text>
+          </g>
+        </svg>
       </div>
     </div>
   </div>
